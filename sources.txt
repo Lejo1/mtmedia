@@ -1,1 +1,2 @@
+https://github.com/minetest/minetest_game/archive/master.zip
 https://github.com/minetest/minetest/archive/master.zip
