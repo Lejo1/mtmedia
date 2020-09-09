@@ -22,14 +22,16 @@ which openssl &>/dev/null || die "OpenSSL not installed."
 
 mkdir -p $MEDIADIR
 
-while read p; do
+while read "p"; do
 	echo "Loading and Extracting: $p"
 	mkdir -p tmp
-  wget -q "$p" -O download.zip
+  curl -L "$p" > download.zip
 	unzip -qn download.zip -d tmp
+	# For special cases saving perms in zip files:
+	chmod -R +rwx tmp
 	collect_from tmp
 	rm download.zip
-	rm -r tmp
+	rm -rf tmp
 done < sources.txt
 
 echo "done"

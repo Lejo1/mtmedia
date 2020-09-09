@@ -8,14 +8,14 @@ import requests
 if len(sys.argv) <= 1:
     sys.exit("No tags selected. Tags: core, mtgame, mtmods, contentdb")
 
-urls = set()
+urls = []
 
 if "core" in sys.argv:
-    urls.add("https://github.com/minetest/minetest/archive/master.zip")
+    urls.append("https://github.com/minetest/minetest/archive/master.zip")
     print("Added minetest/minetest")
 
 if "mtgame" in sys.argv:
-    urls.add("https://github.com/minetest/minetest_game/archive/master.zip")
+    urls.append("https://github.com/minetest/minetest_game/archive/master.zip")
     print("Added minetest/minetest_game")
 
 if "mtmods" in sys.argv:
@@ -24,7 +24,7 @@ if "mtmods" in sys.argv:
         sys.exit("Request failed!")
 
     for project in r.json():
-        urls.add(project["html_url"] + "/archive/master.zip")
+        urls.append(project["html_url"] + "/archive/master.zip")
         print("Added: " + project["full_name"])
 
 if "contentdb" in sys.argv:
@@ -33,8 +33,9 @@ if "contentdb" in sys.argv:
         sys.exit("Request failed!")
 
     for project in r.json():
-        urls.add("https://content.minetest.net/packages/" + project["author"] + "/" + project["name"] + "/download/")
-        print("Added: " + project["title"])
+        if project["type"] != "txp":
+            urls.append("https://content.minetest.net/packages/" + project["author"] + "/" + project["name"] + "/download/")
+            print("Added: " + project["title"])
 
 file = open("sources.txt", "w")
 file.write("\n".join(urls) + "\n")

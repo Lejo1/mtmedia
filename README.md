@@ -8,6 +8,8 @@ Tags are:
 - core
 - mtgame
 - mtmods
-- contentdb
+- contentdb/skins
+
+[contentdb](https://content.minetest.net/) and [skins](http://minetest.fensta.bplaced.net/) are automaticly fetched from the databases
 
 The lower ones allways also contain the higher ones.
