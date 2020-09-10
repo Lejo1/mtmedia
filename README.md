@@ -26,3 +26,10 @@ Only the first one works right now! The others need a [change](https://github.co
 - https://cdn.jsdelivr.net/gh/Lejo1/mtmedia/m/
 - https://ghcdn.rawgit.org/Lejo1/mtmedia/master/m/
 - https://rawcdn.githack.com/Lejo1/mtmedia/6924d63f4cc9685d290fb05c96fb6e7c8b40f484/m/
+
+## Setup
+
+The good thing is you can use multiple remote servers. This setup is fully backward compatible and also works for older clients.
+
+minetest.conf:  
+`remote_media = https://cdn.jsdelivr.net/gh/Lejo1/mtmedia/m/,http://lejo1.gitlab.io/mtmedia/`
