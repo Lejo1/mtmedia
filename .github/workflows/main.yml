@@ -1,4 +1,4 @@
-name: Index files
+name: Update and Index files
 
 on:
   push:
@@ -16,9 +16,19 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.7
-    - name: Create index.mth
+    - name: Install dependencies
       run: |
-        python make_index_mth.py
+        python -m pip install --upgrade pip
+        pip install requests
+
+    - name: Update Links
+      run: python collect-links.py core mtgame mtmods contentdb
+    - name: Pull Media
+      run: bash collect-media.sh
+    - name: Update Skins
+      run: python update_skins.py
+    - name: Create index.mth
+      run: python make_index_mth.py
     - name: Git Auto Commit
       uses: stefanzweifel/git-auto-commit-action@v4.4.1
       with:
